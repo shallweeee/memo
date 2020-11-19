@@ -1,0 +1,11 @@
+{
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.fontFamily": "'Bitstream Vera Sans Mono', 'Malgun Gothic', Consolas, 'Courier New', monospace",
+    "editor.autoClosingBrackets": "beforeWhitespace",
+    "html.autoClosingTags": false,
+    "typescript.autoClosingTags": false,
+    "editor.autoClosingQuotes": "never",
+    "editor.fontSize": 16,
+    "terminal.integrated.fontSize": 16,
+    "debug.console.fontSize": 16
+}
