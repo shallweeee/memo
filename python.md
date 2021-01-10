@@ -43,6 +43,10 @@ array([[0, 1, 2],
    A  B
 a  1  2
 b  3  4
+>>> pd.DataFrame({'A': [1, 3], 'B': [2, 4]})
+   A  B
+0  1  2
+1  3  4
 ```
 ```
 >>> pd.DataFrame(np.random.randint(1, 10, (3, 3)), columns=list('abc'))
