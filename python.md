@@ -58,10 +58,12 @@ b  3  4
 ```
 조사
 ```
+df.info()
 help(df)
 type(df)
+dir(df)
 id(df)
-df is df1
+df1 is df2
 ```
 축
 ```
@@ -78,9 +80,11 @@ dtype: int64
 1    26
 dtype: int64
 ```
-인코딩
+csv
 ```
 pd.read_csv(file_name_or_url, encoding='cp949')
+pd.read_csv(file_name_or_url, engine='python')
+pd.read_csv(file_name_or_url, usecols=['A', 'B'])  # A, B 컬럼만 로딩
 ```
 예외
 ```
@@ -92,4 +96,54 @@ else:
     예외가 없을 때 실행
 finally:
     항상 실행
+```
+인덱싱&슬라이싱
+```
+>>> df = pd.DataFrame(np.array([i+j for i in range(1, 6) for j in [10, 20, 30]]).reshape(5,3), columns=['c1', 'c2', 'c3'])
+>>> df
+   c1  c2  c3
+0  11  21  31
+1  12  22  32
+2  13  23  33
+3  14  24  34
+4  15  25  35
+>>> df[['c1', 'c2']][1:3]
+   c1  c2
+1  12  22
+2  13  23
+```
+마스킹
+```
+>>> df[(df.c1 > 11) & (df.c3 < 34)]
+   c1  c2  c3
+1  12  22  32
+2  13  23  33
+```
+팬시 검색
+```
+>>> df[['c1', 'c2']]
+   c1  c2
+0  11  21
+1  12  22
+2  13  23
+3  14  24
+4  15  25
+>>> df.c2[[0,2,4]]
+0    21
+2    23
+4    25
+```
+인덱서 검색
+```
+>>> df.lookup([0, 1], ['c1', 'c2'])
+array([11, 22])
+>>> df.iloc[0, 0]
+11
+>>> df.iloc[[0], 0]
+0    11
+Name: c1, dtype: int64
+>>> type(df.iloc[[0], 0])
+<class 'pandas.core.series.Series'>
+>>> type(df.iloc[[0], [0]])
+<class 'pandas.core.frame.DataFrame'>
 ```
