@@ -68,6 +68,7 @@ type(df)
 dir(df)
 id(df)
 df1 is df2
+df.col.dtype
 ```
 축
 ```
@@ -116,12 +117,22 @@ finally:
 1  12  22
 2  13  23
 ```
-마스킹
+마스킹 검색
 ```
 >>> df[(df.c1 > 11) & (df.c3 < 34)]
    c1  c2  c3
 1  12  22  32
 2  13  23  33
+```
+```
+>>> df[df.c2 > 23]
+   c1  c2  c3
+3  14  24  34
+4  15  25  35
+>>> df.query('c2 > 23')
+   c1  c2  c3
+3  14  24  34
+4  15  25  35
 ```
 팬시 검색
 ```
@@ -164,4 +175,27 @@ Name: c1, dtype: int64
 >>> l2 = [2]
 >>> l1 + l2
 [1, 2]
+```
+패턴이 들어 맞는 컬럼
+```
+df.filter(like=pat)
+df.filter(regex=pat)
+```
+세기
+```
+df.col.value_count(dropna=False)
+df.col.value_count()    # col 의 value 별 개수 세기
+df.col.count            # col 의 전체 세기
+df.col.isnull().sum()   # col 의 null 개수 세기
+df.isnull().sum().sum() # df 의 전체 null 개수 세기
+```
+날짜
+```
+>>> pd.date_range('20210116', periods=3)
+DatetimeIndex(['2021-01-16', '2021-01-17', '2021-01-18'], dtype='datetime64[ns]', freq='D')
+>>> pd.date_range('20210116', '2021-01-18')
+DatetimeIndex(['2021-01-16', '2021-01-17', '2021-01-18'], dtype='datetime64[ns]', freq='D')
+
+df.resample('D').sum()  # 날짜별 합계
+df.resample('W').mean()  # 주별 평균
 ```
