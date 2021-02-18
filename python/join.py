@@ -19,4 +19,4 @@ while reduce(lambda s, v: s + len(v), dic.values(), 0) > 0:
             dic[k] = v[1:]
 
 df = pd.DataFrame(out)
-df.to_csv('out.csv', index=False)
+df.to_csv('join.csv', index=False)
